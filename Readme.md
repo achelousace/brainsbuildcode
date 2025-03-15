@@ -8,7 +8,7 @@ pip install brainsbuildcode
 
 
 # Usage
-
+```python
 from brainsbuildcode import Brain
 
 from sklearn.datasets import load_breast_cancer
@@ -29,7 +29,7 @@ best_model.build()
 
 best_model = Brain(df, target='target', model_name='RFC', grid_search='cv').build()
 
-
+```
 # Install directly from GitHub:
 
 pip install git+https://github.com/achelousace/brainsbuildcode.git
