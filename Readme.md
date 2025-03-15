@@ -8,11 +8,15 @@ pip install brainsbuildcode
 
 
 # Usage
+
 from brainsbuildcode import Brain
+
 from sklearn.datasets import load_breast_cancer
+
 import pandas as pd
 
 data = load_breast_cancer(as_frame=True)
+
 df = data.frame
 
 # Train and build the model
