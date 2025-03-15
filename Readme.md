@@ -1,6 +1,6 @@
 # brainsbuildcode - Automated Machine Learning Pipeline
 
-brainsbuildcode is an automated machine learning pipeline that performs data preprocessing, feature engineering, model selection, hyperparameter tuning, and evaluation.
+Brains Build Code is an automated machine learning pipeline that performs data preprocessing, feature engineering, model selection, hyperparameter tuning, and evaluation.
 
 ## Installation
 
