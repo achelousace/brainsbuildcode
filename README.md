@@ -1,4 +1,4 @@
-# 🧠 Brains Build Code - Automated Machine Learning Pipeline
+# **🧠 Brains Build Code - Automated Machine Learning Pipeline**
 
 **Brains Build Code** is an automated machine learning pipeline designed to simplify the end-to-end machine learning workflow. It handles:
 
@@ -10,21 +10,21 @@
 
 Built to save you time, reduce boilerplate, and accelerate experimentation.
 
-Installation
+# **Installation**
 
-From PyPI:
+**From PyPI**
 ```bash
 pip install brainsbuildcode
 ```
 
-Directly from GitHub:
+**Directly from GitHub**
 ```bash
 pip install git+https://github.com/achelousace/brainsbuildcode.git
 ```
 
-📖 Usage
+# **📖 Usage**
 
-Fast Build Example:
+## **Fast Build Example**
 
 ```python
 from brainsbuildcode import Brain
@@ -40,7 +40,7 @@ best_model = Brain(df, target='target', model_name='RFC', grid_search=None)
 best_model.build()
 ```
 
-Alternative (Chainable Call):
+## **Alternative (Chainable Call)**
 
 ```python
 from brainsbuildcode import Brain
@@ -53,7 +53,7 @@ df = data.frame
 best_model = Brain(df, target='target', model_name='RFC', grid_search='cv').build()
 ```
 
-Full Pipline Example
+## **Full Pipline Example**
 
 ```python
 from sklearn.datasets import load_iris
@@ -137,7 +137,7 @@ brain = Brain(df=df,
 brain.build()
 ```
 
-Convert Function (Manual Data Preprocessing):
+## **Convert Function (Manual Data Preprocessing)**
 
 ```python
 from sklearn.datasets import load_iris
@@ -158,7 +158,7 @@ X, y, ncol, ocol, ordinal_cols = converter.apply()
 # Now you can process `X`, `y`, `ncol`, `ocol`, `ordinal_cols` manually, or pass them back to `Brain`
 ```
 
-Pass Convert to Brain Manually
+## **Pass Convert to Brain Manually**
 
 ```python
 from sklearn.datasets import load_iris
@@ -192,7 +192,47 @@ best_model = Brain(
 best_model.build()
 ```
 
-💡 Key Features
+# **Models Names**
+
+| Model_Name | Model Name                 | Task                     |
+|------------|----------------------------|--------------------------|
+| LR         | LogisticRegression         | classification           |
+| RFC        | RandomForestClassifier     | classification           |
+| XGBC       | XGBClassifier              | classification           |
+| KNNC       | KNeighborsClassifier       | classification           |
+| DTC        | DecisionTreeClassifier     | classification           |
+| SVC        | SVC                        | classification           |
+| MLPC       | MLPClassifier              | classification           |
+| ADAC       | AdaBoostClassifier         | classification           |
+| GBC        | GradientBoostingClassifier | classification           |
+| BC         | BaggingClassifier          | classification           |
+| NBC        | BernoulliNB                | classification           |
+| Linear     | LinearRegression           | regression               |
+| RFR        | RandomForestRegressor      | regression               |
+| XGBR       | XGBRegressor               | regression               |
+| KNNR       | KNeighborsRegressor        | regression               |
+| DTR        | DecisionTreeRegressor      | regression               |
+| SVR        | SVR                        | regression               |
+| MLPR       | MLPRegressor               | regression               |
+| ADAR       | AdaBoostRegressor          | regression               |
+| GBR        | GradientBoostingRegressor  | regression               |
+| BR         | BaggingRegressor           | regression               |
+| NBR        | BayesianRidge              | regression               |
+| LRmulti    | LogisticRegression         | multi-class classification |
+| RFmulti    | RandomForestClassifier     | multi-class classification |
+| XGBmulti   | XGBClassifier              | multi-class classification |
+| KNNmulti   | KNeighborsClassifier       | multi-class classification |
+| DTmulti    | DecisionTreeClassifier     | multi-class classification |
+| SVCmulti   | SVC                        | multi-class classification |
+| MLPCmulti  | MLPClassifier              | multi-class classification |
+| ADAmulti   | AdaBoostClassifier         | multi-class classification |
+| GBmulti    | GradientBoostingClassifier | multi-class classification |
+| BCmulti    | BaggingClassifier          | multi-class classification |
+| NBmulti    | ComplementNB               | multi-class classification |
+| vote       | VotingClassifier           | Ensamble                 |
+
+
+# 💡 **Key Features**
 
 * Automatic Detection of numerical, categorical, and ordinal features.
 
@@ -210,8 +250,8 @@ best_model.build()
 
 * Detailed Evaluation Metrics & Visualizations.
 
-🔗 License
+# **🔗 License**
 This project is licensed under the MIT License.
 
-🛠️ Contribution
+# **🛠️ Contribution**
 Feel free to contribute, suggest features, or report issues via pull requests and the issues section!
