@@ -107,6 +107,7 @@ class Brain:
         self.drop_cols = drop_cols
         self.typeval = typeval
         self.convrate = convrate
+        
 
     def convert(self, df, target, ncol=None, ocol=None, ordinal_cols=None,
                                         ord_threshold=None, ordname=(), drop_cols=(), typeval=80, convrate=80):
@@ -239,17 +240,20 @@ class Brain:
         return x_train_pros, x_test_pros
 
     def build(self):
-        # First, process and convert the dataframe
-        X, y, ncol_conv, ocol_conv, ordinal_cols_conv = self.convert(
-            self.df, self.target, self.numerical_cols, self.categorical_cols,
-            self.ordinal_cols, self.ord_threshold, self.ordname, self.drop_cols, self.typeval, self.convrate
-        )
-        # Update column lists if not explicitly provided
-        if not self.numerical_cols:
+        # Check if column information is already provided
+        if self.numerical_cols and self.categorical_cols and self.ordinal_cols is not None:
+            print("Skipping convert() because column info is already provided.")
+            X = self.df[self.numerical_cols + self.categorical_cols + list(self.ordinal_cols.keys())].copy()
+            y = self.df[self.target].copy()
+        else:
+            # Process and convert the dataframe only if not already specified
+            X, y, ncol_conv, ocol_conv, ordinal_cols_conv = self.convert(
+                self.df, self.target, self.numerical_cols, self.categorical_cols,
+                self.ordinal_cols, self.ord_threshold, self.ordname, self.drop_cols, self.typeval, self.convrate
+            )
+            # Update columns
             self.numerical_cols = ncol_conv
-        if not self.categorical_cols:
             self.categorical_cols = ocol_conv
-        if not self.ordinal_cols:
             self.ordinal_cols = ordinal_cols_conv
 
         if self.xtype:
@@ -262,6 +266,7 @@ class Brain:
             non_nan_indices_y = ~y.isna()
             y = y[non_nan_indices_y]
 
+                
         def check_duplicates(X, drop_duplicates=False):
             num_duplicates = self.df.duplicated().sum()
             if num_duplicates > 0:
@@ -272,13 +277,21 @@ class Brain:
                 columns_with_percentage = [f"{col} ({percentage:.2f}%)" for col, percentage in percentage_per_column.items()]
                 duplicate_df.columns = columns_with_percentage
                 duplicate_df_sorted = duplicate_df.sort_values(by=list(duplicate_df.columns), ascending=False)
+
                 if drop_duplicates:
-                    self.df.drop_duplicates(inplace=True)
-                    print("First occurrence of duplicates dropped.")
+                    if drop_duplicates == 'all':
+                        self.df.drop_duplicates(keep=False, inplace=True)
+                        print("All duplicates dropped.")
+                    else:
+                        self.df.drop_duplicates(keep='first', inplace=True)
+                        print("First occurrence of duplicates dropped.")
+                
                 print("Duplicate rows:")
                 display(duplicate_df_sorted)
             else:
                 print("No duplicated rows found.")
+
+
 
         def missing_info(df):
             missing_count = df.isnull().sum()
@@ -297,7 +310,7 @@ class Brain:
 
         def display_value_counts(X):
             result_df = pd.DataFrame()
-            for col in X.select_dtypes(include='object').columns:
+            for col in X.select_dtypes(include=['object', 'category']).columns:
                 value_counts = X[col].value_counts()
                 value_counts_df = value_counts.reset_index()
                 value_counts_df.columns = [col + '_value', col + '_count']
