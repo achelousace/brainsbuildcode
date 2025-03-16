@@ -11,10 +11,12 @@ class Convert:
         df = self.df.copy()
         target = self.target
 
+        # If ncol and ocol are not provided, extract them
         if not ncol:
             ncol = [col for col in df.select_dtypes(include=['float64', 'int64']).columns.tolist() if col != target]
         if not ocol:
-            ocol = [col for col in df.select_dtypes(include=['object']).columns.tolist() if col != target]
+            ocol = [col for col in df.select_dtypes(include=['object', 'category']).columns.tolist() if col != target]
+
 
         if not ordinal_cols:
             ordinal_cols = {}
