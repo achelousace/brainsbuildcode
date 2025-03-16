@@ -62,7 +62,6 @@ import pandas as pd
 
 # Load dataset
 df = sns.load_dataset("titanic")
-target = 'survived'
 
 # Step 1: Instantiate
 best_model = Brain(df, target='survived', model_name='RFC', grid_search=None, drop_duplicates=True)
