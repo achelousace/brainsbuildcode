@@ -115,7 +115,7 @@ class Brain:
         if not ncol:
             ncol = [col for col in df.select_dtypes(include=['float64', 'int64']).columns.tolist() if col != target]
         if not ocol:
-            ocol = [col for col in df.select_dtypes(include=['object']).columns.tolist() if col != target]
+            ocol = [col for col in df.select_dtypes(include=['object', 'category']).columns.tolist() if col != target]
 
         # Identify ordinal columns (if ord_threshold is specified)
         if not ordinal_cols:
