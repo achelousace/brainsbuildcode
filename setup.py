@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='brainsbuildcode',
-    version='1.0.1',
+    version='1.0.2',
     author='Mohammad.R.AbuAyyash',
     author_email='brainbuildai@gmail.com',
     description='A machine learning pipeline for preprocessing, model selection, and evaluation.',
