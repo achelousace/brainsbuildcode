@@ -1,6 +1,6 @@
-🧠 Brains Build Code - Automated Machine Learning Pipeline
+# 🧠 Brains Build Code - Automated Machine Learning Pipeline
 
-Brains Build Code is an automated machine learning pipeline designed to simplify the end-to-end machine learning workflow. It handles:
+**Brains Build Code** is an automated machine learning pipeline designed to simplify the end-to-end machine learning workflow. It handles:
 
 * Data preprocessing
 * Feature engineering
@@ -107,7 +107,7 @@ brain = Brain(df=df,
               xtype=True,                            # Display column data types (True/False)
               
               # Duplicate handling
-              drop_duplicates=False,           # False = keep duplicates, True = drop first occurrence, 'all' = drop all duplicates
+              drop_duplicates=False,    # False = keep duplicates, True = drop first occurrence, 'all' = drop all duplicates
               
               # Target encoding
               yencode=None,                           # 'encode' = LabelEncode target, 'bin' = Binarize, None = no encoding
